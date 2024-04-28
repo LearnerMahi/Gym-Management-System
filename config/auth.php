@@ -41,7 +41,15 @@ return [
             'provider' => 'users',
         ],
     ],
-
+    'guards' => [
+        // Other guards...
+    
+        'trainer' => [
+            'driver' => 'session',
+            'provider' => 'trainers',
+        ],
+    ],
+    
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -70,7 +78,15 @@ return [
         //     'table' => 'users',
         // ],
     ],
-
+    'providers' => [
+        // Other providers...
+    
+        'trainers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Trainer::class,
+        ],
+    ],
+    
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use App\Models\Trainer;
 
 class ChooseController extends Controller
 {
@@ -14,45 +14,68 @@ class ChooseController extends Controller
         $selectedRole = $request->input('role');
         
         if ($selectedRole === 'user') {
-            // Logic for user role
-            return view('welcome');
+            
+            
+            return redirect(route('login'));
+            
         } elseif ($selectedRole === 'admin') {
-            // Logic for admin role
-            return view('adminlog'); // Assuming your view for admin login is named admin.login.blade.php
+            
+            return redirect()->route('adminlog');
+
         } elseif ($selectedRole === 'trainer') {
-            // Logic for trainer role
-            return "Selected role is Trainer";
+           
+            return view('trainer');
         }
     }
-    
+
     public function adminlogPost(Request $request)
-{
-    // Validate the request data
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
+    {
+        
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-    // Retrieve the credentials from the request
-    $email = $request->input('email');
-    $password = $request->input('password');
+       
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-    // Retrieve the admin record from the database using the provided email
-    $admin = Admin::where('email', $email)->first();
+      
+        $admin = Admin::where('email', $email)->first();
 
-    // Check if an admin with the provided email exists
-    if ($admin) {
-        // Check if the password is hashed using Bcrypt
-        if (password_verify($password, $admin->password) || md5($password) === $admin->password) {
-            // Password matches, login successful
-            return redirect()->intended(route('adminpage'))->with("success", "Successfully logged in");
+       
+        if ($admin && (password_verify($password, $admin->password) || md5($password) === $admin->password)) {
+            $trainers = Trainer::all();
+            //return redirect()->route('adminpage')->with(compact('trainers'));
+            return view('adminpage', compact('trainers'));
         }
+
+       
+        return redirect()->route('adminlog')->with("error", "Invalid credentials");
+    }
+
+    public function tradele($id)
+    {
+        $trainer = Trainer::find($id);
+    
+       
+        if (!$trainer) {
+            return redirect()->route('adminpage')->with("error", "Trainer not found");
+        }
+    
+       
+        $trainer->delete();
+    
+     
+        $trainers = Trainer::all();
+        return view('adminpage', compact('trainers'))->with("success", "Trainer deleted successfully");
     }
     
+}
     
 
-    // Invalid credentials, redirect back to the login page
-    return redirect()->route('adminlog')->with("error", "Invalid credentials");
-}
 
-}
+
+    
+
+    
