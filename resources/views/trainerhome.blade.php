@@ -27,13 +27,15 @@
             border: 1px solid #dee2e6;
             padding: 8px;
         }
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
+        .btn-update {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #fff;
         }
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #bd2130;
+        .btn-update:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            color: #fff;
         }
     </style>
 </head>
@@ -45,7 +47,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
+                        
                         <th>Contact Number</th>
                         <th>Address</th>
                         <th>Bio</th>
@@ -57,29 +59,40 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" name="name" value="{{ Auth::guard('trainer')->user()->name }}"></td>
-                        <td><input type="email" name="email" value="{{ Auth::guard('trainer')->user()->email }}"></td>
-                        <td><input type="text" name="contact_number" value="{{ Auth::guard('trainer')->user()->contact_number }}"></td>
-                        <td><input type="text" name="address" value="{{ Auth::guard('trainer')->user()->address }}"></td>
-                        <td><input type="text" name="bio" value="{{ Auth::guard('trainer')->user()->bio }}"></td>
-                        <td><input type="text" name="specialization" value="{{ Auth::guard('trainer')->user()->specialization }}"></td>
-                        <td><input type="text" name="gym_affiliation" value="{{ Auth::guard('trainer')->user()->gym_affiliation }}"></td>
-                        <td><input type="text" name="gym_membership_id" value="{{ Auth::guard('trainer')->user()->gym_membership_id }}"></td>
+                    <td><span>{{ Auth::guard('trainer')->user()->name }}</span></td>
+<td><span>{{ Auth::guard('trainer')->user()->contact_number }}</span></td>
+<td><span>{{ Auth::guard('trainer')->user()->address }}</span></td>
+<td><span>{{ Auth::guard('trainer')->user()->bio }}</span></td>
+<td><span>{{ Auth::guard('trainer')->user()->specialization }}</span></td>
+<td><span>{{ Auth::guard('trainer')->user()->gym_affiliation }}</span></td>
+<td><span>{{ Auth::guard('trainer')->user()->gym_membership_id }}</span></td>
+
 
                         <td>
                         <form action="{{ route('trainer.update', ['gym_membership_id' => Auth::guard('trainer')->user()->gym_membership_id]) }}" method="POST">
     @csrf
     @method('PUT')
     <input type="hidden" name="gym_membership_id" value="{{ Auth::guard('trainer')->user()->gym_membership_id }}">
-    <input type="text" name="name" value="{{ Auth::guard('trainer')->user()->name }}">
-    <input type="email" name="email" value="{{ Auth::guard('trainer')->user()->email }}">
-    <input type="text" name="contact_number" value="{{ Auth::guard('trainer')->user()->contact_number }}">
-    <input type="text" name="address" value="{{ Auth::guard('trainer')->user()->address }}">
-    <input type="text" name="bio" value="{{ Auth::guard('trainer')->user()->bio }}">
-    <input type="text" name="specialization" value="{{ Auth::guard('trainer')->user()->specialization }}">
-    <input type="text" name="gym_affiliation" value="{{ Auth::guard('trainer')->user()->gym_affiliation }}">
+<input type="text" name="name" value="{{ Auth::guard('trainer')->user()->name }}" placeholder="Enter your name">
+
+<input type="text" name="contact_number" value="{{ Auth::guard('trainer')->user()->contact_number }}" placeholder="Enter your contact number">
+<input type="text" name="address" value="{{ Auth::guard('trainer')->user()->address }}" placeholder="Enter your address">
+<input type="text" name="bio" value="{{ Auth::guard('trainer')->user()->bio }}" placeholder="Enter your bio">
+<select id="specialization" class="form-control" name="specialization">
+    <option value="" disabled selected hidden>Select specialization</option>
+    <option value="bodybuilding"{{ (Auth::guard('trainer')->user()->specialization == 'bodybuilding') ? ' selected' : '' }}>Bodybuilding</option>
+    <option value="youth fitness"{{ (Auth::guard('trainer')->user()->specialization == 'youth fitness') ? ' selected' : '' }}>Youth Fitness</option>
+    <option value="senior fitness"{{ (Auth::guard('trainer')->user()->specialization == 'senior fitness') ? ' selected' : '' }}>Senior Fitness</option>
+    <option value="weight loss"{{ (Auth::guard('trainer')->user()->specialization == 'weight loss') ? ' selected' : '' }}>Weight Loss</option>
+    <option value="leg"{{ (Auth::guard('trainer')->user()->specialization == 'leg') ? ' selected' : '' }}>Leg</option>
+    <option value="chest"{{ (Auth::guard('trainer')->user()->specialization == 'chest') ? ' selected' : '' }}>Chest</option>
+    <option value="strength"{{ (Auth::guard('trainer')->user()->specialization == 'strength') ? ' selected' : '' }}>Strength</option>
+</select>
+<input type="text" name="gym_affiliation" value="{{ Auth::guard('trainer')->user()->gym_affiliation }}" placeholder="Enter your gym affiliation">
+
     <!-- Add other fields to update here -->
-    <button type="submit" class="btn btn-danger">Update</button>
+    <button type="submit" class="btn btn-primary">Update</button>
+
 </form>
 
 
