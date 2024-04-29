@@ -7,6 +7,7 @@ use App\Models\Trainer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 class TrainerController extends Controller
 {
     function regtrainer(){
@@ -76,11 +77,44 @@ class TrainerController extends Controller
 
         // Attempt authentication using the 'trainer' guard
         if (Auth::guard('trainer')->attempt($credentials)) {
+            $trainer = Auth::guard('trainer')->user();
             return redirect()->intended(route('thome'))->with("success", "Successfully logged in");
         }
 
         return redirect()->route('logtrainer')->with("error", "Invalid credentials");
     }
- 
+    public function update(Request $request, $id)
+    {
+        try {
+            // Find the trainer record
+            $trainer = Trainer::findOrFail($id);
+    
+            // Prepare the data to update
+            $dataToUpdate = [];
+    
+            // Check if each field exists in the request and add it to the data to update
+            foreach ($trainer->getFillableForUpdates() as $field) {
+                if ($request->has($field)) {
+                    $dataToUpdate[$field] = $request->input($field);
+                }
+            }
+    
+            // Update the trainer record with the provided data
+            $trainer->update($dataToUpdate);
+    
+            return redirect()->route('thome')->with('success', 'Trainer information updated successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error updating trainer information: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while updating trainer information. Please try again.');
+        }
+    }
+    
 
-}
+    }
+    
+    
+    
+
+
+
+

@@ -27,6 +27,20 @@ class Trainer extends Authenticatable
         'background_check_document',
         'terms_accepted',
     ];
+    protected $fillableForUpdates = [
+        'name',
+        'email',
+        'contact_number',
+        'address',
+        'bio',
+        'specialization',
+        'gym_affiliation',
+        'gym_membership_id',
+    ];
+    public function getFillableForUpdates()
+    {
+        return $this->fillableForUpdates;
+    }
 }
 
 

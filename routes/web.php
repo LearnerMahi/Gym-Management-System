@@ -70,3 +70,8 @@ Route::get("/trainerpage",function(){
 
 Route::get("/tralogin",[TrainerController::class,"logtrainer"])->name("logtrainer");
 Route::post("/tralogin",[TrainerController::class,"logtrainerpost"])->name("logtrainer.post");
+
+Route::put('/trainer/update/{gym_membership_id}', [TrainerController::class, 'update'])->name('trainer.update');
+
+
+

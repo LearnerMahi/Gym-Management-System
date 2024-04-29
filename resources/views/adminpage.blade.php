@@ -38,7 +38,7 @@
 </head>
 <body>
     <div class="container">
-        <h2 class="mb-4">Admin Page</h2>
+        <h2 class="mb-4" align="center">Admin Page</h2>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
