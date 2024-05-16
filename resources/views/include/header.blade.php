@@ -19,6 +19,9 @@
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('profile') }}">Profile</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ route('profman') }}">Profile Management</a>
+        </li>
         @else
           <li class="nav-item">
             <a class="nav-link" href="{{ route('registration') }}">Registration</a>

@@ -86,10 +86,52 @@
                                 </a>
                             </td>
                         </tr>
+                        
+
                         @endforeach
                     @endisset
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-text">
+                    <div class="alert alert-info" role="alert">
+                        Total Number of Trainers: <strong>{{ $count }}</strong>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Total expenditure: <strong>{{ $count*50}}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-text">
+                    <div class="alert alert-info" role="alert">
+                        Total Number of Gym-Members: <strong>{{ $count1 }}</strong>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        total income: <strong>{{ $count1*1000 }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-text">
+                    
+                    <div class="alert alert-info" role="alert">
+                        total profit: <strong>{{ $count1*1000-$count*50 }}</strong>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

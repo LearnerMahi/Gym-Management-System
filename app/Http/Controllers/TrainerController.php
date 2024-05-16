@@ -108,6 +108,17 @@ class TrainerController extends Controller
             return redirect()->back()->with('error', 'An error occurred while updating trainer information. Please try again.');
         }
     }
+    public function list(Request $request)
+{
+    $query = $request->input('query', ''); // Get the query from the request or initialize it as an empty string
+    $trainer = Trainer::query()
+                        ->where('name', 'LIKE', "%$query%")
+                        ->orWhere('email', 'LIKE', "%$query%")
+                        ->get();
+
+    return view('welcome', ['trainer' => $trainer, 'query' => $query]); // Pass $trainers and $query to the view
+}
+
     
 
     }

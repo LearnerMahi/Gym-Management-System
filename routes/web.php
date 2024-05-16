@@ -6,6 +6,9 @@ use App\Http\Controllers\ForgetPasswordManager;
 use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\TrainerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Middleware\CheckPaymentStatus;
+use App\Models\Trainer;
 //use App\helper;
 /*
 Route::get('/route', function () {
@@ -51,7 +54,12 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/profile',function(){
 return view('profile');
     })->name('profile');
+    Route::get('/profman',function(){
+        return view('profman');
+            })->name('profman');
+            Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
 }); 
+
 
 Route::get('/trareg',function(){
    return view("trainer");
@@ -73,5 +81,17 @@ Route::post("/tralogin",[TrainerController::class,"logtrainerpost"])->name("logt
 
 Route::put('/trainer/update/{gym_membership_id}', [TrainerController::class, 'update'])->name('trainer.update');
 
+
+
+Route::middleware(CheckPaymentStatus::class)->group(function () {
+    Route::get('/profile',function(){
+        return view('profile');
+            })->name('profile');
+});
+Route::get('/search', function (Illuminate\Http\Request $request) {
+    $specialization = $request->input('specialization');
+    $trainers = Trainer::where('specialization', $specialization)->get();
+    return response()->json($trainers);
+});
 
 
