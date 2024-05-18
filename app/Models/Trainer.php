@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +26,8 @@ class Trainer extends Authenticatable
         'background_check_document',
         'terms_accepted',
     ];
+    
+    // Separate fillable fields for updates
     protected $fillableForUpdates = [
         'name',
         'email',
@@ -35,12 +36,10 @@ class Trainer extends Authenticatable
         'bio',
         'specialization',
         'gym_affiliation',
-        'gym_membership_id',
     ];
+
     public function getFillableForUpdates()
     {
         return $this->fillableForUpdates;
     }
 }
-
-
