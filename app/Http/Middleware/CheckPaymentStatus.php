@@ -8,26 +8,28 @@ use Carbon\Carbon;
 
 class CheckPaymentStatus
 {
+    // This method is called on each request and it performs the check on payment statuses
     public function handle($request, Closure $next)
     {
-        // Get all payments
+        // Retrieve all payments from the database
         $payments = Payment::all();
 
-        // Iterate through payments
+        // Loop through each payment
         foreach ($payments as $payment) {
-            // Convert last payment date to UTC timezone
+            // Convert the last payment date to UTC timezone
             $lastPaymentDate = $payment->last_payment_date->setTimezone('UTC');
 
-            // Dump the last payment date
-            dump($lastPaymentDate);
+            // Output the last payment date for debugging purposes
+            //dump($lastPaymentDate);
 
-            // Check if last payment date is more than 2 minutes ago in UTC timezone
+            // Check if the last payment date is more than 2 minutes ago in UTC timezone
             if ($lastPaymentDate->diffInMinutes(Carbon::now('UTC')) >= 2) {
-                // Update payment status to 0
+                // If the condition is met, update the payment status to 0 (presumably meaning inactive or expired)
                 $payment->update(['status' => 0]);
             }
         }
 
+        // Proceed with the next middleware or request handler
         return $next($request);
     }
 }

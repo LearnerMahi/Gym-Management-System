@@ -66,7 +66,10 @@ class ChooseController extends Controller
     
      
         $trainers = Trainer::all();
-        return view('adminpage', compact('trainers'))->with("success", "Trainer deleted successfully");
+        
+            $count = Trainer::count();
+            $count1 = User::count();
+            return view('adminpage', compact('trainers', 'count', 'count1'));
     }
     
 }

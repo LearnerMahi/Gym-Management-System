@@ -1,16 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Admin Page</title>
+    <title> Admin Page</title>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+       
         body {
-            background-color: #f8f9fa;
+           /*  background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif; */
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
         }
         .container {
             margin-top: 50px;
@@ -21,26 +25,63 @@
         .table th {
             background-color: #007bff;
             color: #fff;
+            font-weight: bold;
         }
         .table th, .table td {
             border: 1px solid #dee2e6;
-            padding: 8px;
+            padding: 12px;
+        }
+        .table-responsive {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .btn-danger {
             background-color: #dc3545;
             border-color: #dc3545;
+            border-radius: 20px;
+            padding: 5px 15px;
+            color: #fff;
         }
         .btn-danger:hover {
             background-color: #c82333;
             border-color: #bd2130;
         }
+        .alert {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-text {
+            margin: 0;
+        }
+        h2 {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Soft warm gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle dark shadow */
+}
+
+
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="mb-4" align="center">Admin Page</h2>
+        <h2 class="mb-4 text-center">Admin Page</h2>
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Trainer Name</th>
@@ -86,8 +127,6 @@
                                 </a>
                             </td>
                         </tr>
-                        
-
                         @endforeach
                     @endisset
                 </tbody>
@@ -102,7 +141,7 @@
                         Total Number of Trainers: <strong>{{ $count }}</strong>
                     </div>
                     <div class="alert alert-info" role="alert">
-                        Total expenditure: <strong>{{ $count*50}}</strong>
+                        Total Expenditure: <strong>${{ $count * 50 }}</strong>
                     </div>
                 </div>
             </div>
@@ -113,22 +152,21 @@
             <div class="card-body">
                 <div class="card-text">
                     <div class="alert alert-info" role="alert">
-                        Total Number of Gym-Members: <strong>{{ $count1 }}</strong>
+                        Total Number of Gym Members: <strong>{{ $count1 }}</strong>
                     </div>
                     <div class="alert alert-info" role="alert">
-                        total income: <strong>{{ $count1*1000 }}</strong>
+                        Total Income: <strong>${{ $count1 * 1000 }}</strong>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="card">
             <div class="card-body">
                 <div class="card-text">
-                    
                     <div class="alert alert-info" role="alert">
-                        total profit: <strong>{{ $count1*1000-$count*50 }}</strong>
+                        Total Profit: <strong>${{ $count1 * 1000 - $count * 50 }}</strong>
                     </div>
                 </div>
             </div>

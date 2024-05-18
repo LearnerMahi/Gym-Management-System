@@ -24,7 +24,9 @@ class TrainerController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:trainer,email',
             'password' => 'required',
-            'terms_accepted' => 'required', // Add validation for terms_accepted
+            'terms_accepted' => 'required', 
+            'contact_number' => ['required', 'regex:/^01[0-9]{9}$/'],
+            // Add validation for terms_accepted
             // Add validation rules for other fields here
         ]);
     
@@ -47,7 +49,6 @@ class TrainerController extends Controller
     
         // Create a new Trainer record
         if($request->terms_accepted=='1'){
-        
         $trainer = Trainer::create($data);
         }
     

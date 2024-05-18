@@ -1,8 +1,9 @@
 <!-- resources/views/trainer/register.blade.php -->
 
-<title>@yield('title','Trainer Registration')</title>
-@include('include.header2')
-    @yield('content')
+@extends('layout2')
+@section('title', 'Choose Your Role')
+
+@section('content')
 
     <!DOCTYPE html>
 <html lang="en">
@@ -147,3 +148,4 @@
     
 </body>
 </html>
+@endsection
