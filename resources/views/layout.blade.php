@@ -6,29 +6,29 @@
     <title>@yield('title','Gym-Management-System')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" >
     <style>
-        /* Customize your header style here */
+     
         header {
-            background-color:#343a40; /* Set a consistent background color */
-            color: #fff; /* Set text color */
+            background-color:#343a40; 
+            color: #fff; 
             height: 3%;
-            padding: 10px 0; /* Add padding to the header */
-            position: fixed; /* Fixed positioning */
-            top: 0; /* Align header to the top */
-            width: 100%; /* Full width */
-            z-index: 1000; /* Ensure the header is on top of other elements */
+            padding: 10px 0; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
         }
     </style>
   </head>
   <body>
   <header>
-        @include('include.header') <!-- Include your header content here -->
+        @include('include.header') 
     </header>
     <div>
       
     </div>
     <div class="container-fluid">
     
-        @yield('content') <!-- Main content area -->
+        @yield('content') 
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

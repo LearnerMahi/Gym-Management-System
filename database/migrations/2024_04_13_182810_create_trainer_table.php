@@ -20,8 +20,8 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->enum('specialization', ['bodybuilding', 'youth fitness', 'senior fitness', 'weight loss', 'leg', 'chest', 'strength'])->nullable();
             $table->text('certifications')->nullable();
-             $table->text('gym_affiliation')->nullable();
-             $table->bigIncrements('gym_membership_id')->primary();
+            $table->text('gym_affiliation')->nullable();
+            $table->bigIncrements('gym_membership_id')->primary();
 
             $table->string('certification_proof')->nullable();
             $table->string('background_check_document')->nullable();

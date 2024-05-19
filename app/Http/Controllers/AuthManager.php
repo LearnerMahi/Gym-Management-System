@@ -59,5 +59,14 @@ class AuthManager extends Controller
     Auth::logout();
     return redirect(route('login'));
    }
+   public function adlogout(Request $request)
+    {
+        Auth::logout();
 
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return view('adminlog');
+    }
 }

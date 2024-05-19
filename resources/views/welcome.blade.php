@@ -11,47 +11,62 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #e9ecef;
         }
         .container {
             margin-top: 50px;
-            padding: 0 15px;
         }
         .card {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 40px;
         }
         .card-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
             text-align: center;
-            color: #007bff;
+            color: #343a40;
         }
         .form-group label {
-            font-weight: bold;
+            font-weight: 600;
+            color: #343a40;
+        }
+        select.form-control {
+            height: calc(2.25rem + 10px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 10px;
+            border: 1px solid #ced4da;
         }
         table {
             width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #dee2e6;
+            margin-top: 30px;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
         }
         th, td {
-            padding: 10px;
+            padding: 15px;
             text-align: left;
+            border-bottom: 1px solid #dee2e6;
         }
         th {
-            background-color: #007bff;
-            color: white;
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        tbody tr:nth-of-type(odd) {
+            background-color: #f8f9fa;
+        }
+        tbody tr:hover {
+            background-color: #e9ecef;
         }
         #results {
-            margin-top: 20px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -88,7 +103,7 @@
                     method: 'GET',
                     data: { specialization: specialization },
                     success: function(response) {
-                        var html = '<table class="table table-striped"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody>';
+                        var html = '<table class="table table-hover"><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody>';
                         $.each(response, function(index, trainer) {
                             html += '<tr><td>' + trainer.name + '</td><td>' + trainer.email + '</td></tr>';
                         });
@@ -102,7 +117,7 @@
         });
     });
 </script>
-
+@include('include.footer')
 </body>
 </html>
 

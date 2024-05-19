@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::post('/choose-post', [ChooseController::class, 'choosePost'])->name('choose.post');
@@ -40,6 +40,7 @@ Route::get('/adminpage',function(){
   return view('adminpage');
 })->name('adminpage');
 Route::get('/adminpage/delete/{id}',[ChooseController::class,'tradele'])->name('tradele');
+Route::get('/adminlogout', 'AuthManager@adlogout')->name('adlogout');
 
 
 Route::get('/login',[AuthManager::class,'login'])->name('login');
@@ -51,6 +52,7 @@ Route::post('/registration',[AuthManager::class,'registrationPost'])->name('regi
 Route::get('/logout',[AuthManager::class,'logout'])->name('logout');
 
 Route::group(['middleware'=>'auth'],function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile',function(){
 return view('profile');
     })->name('profile');
@@ -94,4 +96,12 @@ Route::get('/search', function (Illuminate\Http\Request $request) {
     return response()->json($trainers);
 });
 
+/* Route::middleware(['isAdmin'])->group(function () {
+    Route::post('/adminlogpost',[ChooseController::class,'adminlogPost'])->name('adminlog.post');
+    Route::get('/adminpage',function(){
+      return view('adminpage');
+    })->name('adminpage');
+    Route::get('/adminpage/delete/{id}',[ChooseController::class,'tradele'])->name('tradele');
+    Route::get('/adminlogout', 'AuthManager@adlogout')->name('adlogout');
+}); */
 

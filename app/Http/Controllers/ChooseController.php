@@ -55,13 +55,9 @@ class ChooseController extends Controller
     public function tradele($id)
     {
         $trainer = Trainer::find($id);
-    
-       
         if (!$trainer) {
             return redirect()->route('adminpage')->with("error", "Trainer not found");
         }
-    
-       
         $trainer->delete();
     
      

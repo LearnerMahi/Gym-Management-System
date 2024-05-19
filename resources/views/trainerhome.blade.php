@@ -91,9 +91,12 @@
             }
         }
     </style>
+      
 </head>
+
 <body>
     <div class="container">
+    
         <h2 class="mb-4 text-center">Trainer Information</h2>
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -124,16 +127,16 @@
                                 @method('PUT')
                                 <input type="hidden" name="gym_membership_id" value="{{ Auth::guard('trainer')->user()->gym_membership_id }}">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="name" value="{{ Auth::guard('trainer')->user()->name }}" placeholder="Enter your name">
+                                    <input type="text" class="form-control" name="name" value="{{ Auth::guard('trainer')->user()->name }}" placeholder="name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="contact_number" value="{{ Auth::guard('trainer')->user()->contact_number }}" placeholder="Enter your contact number">
+                                    <input type="text" class="form-control" name="contact_number" value="{{ Auth::guard('trainer')->user()->contact_number }}" placeholder="contact_no">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="address" value="{{ Auth::guard('trainer')->user()->address }}" placeholder="Enter your address">
+                                    <input type="text" class="form-control" name="address" value="{{ Auth::guard('trainer')->user()->address }}" placeholder="address">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="bio" value="{{ Auth::guard('trainer')->user()->bio }}" placeholder="Enter your bio">
+                                    <input type="text" class="form-control" name="bio" value="{{ Auth::guard('trainer')->user()->bio }}" placeholder="bio">
                                 </div>
                                 <div class="form-group">
                                     <select id="specialization" class="form-control" name="specialization">
@@ -148,7 +151,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="gym_affiliation" value="{{ Auth::guard('trainer')->user()->gym_affiliation }}" placeholder="Enter your gym affiliation">
+                                    <input type="text" class="form-control" name="gym_affiliation" value="{{ Auth::guard('trainer')->user()->gym_affiliation }}" placeholder="gym_affiliation">
                                 </div>
                                 <button type="submit" class="btn btn-update">Update</button>
                             </form>
@@ -157,10 +160,15 @@
                 </tbody>
             </table>
         </div>
+        <span class="navbar-text">
+      @auth Welcome, {{auth()->user()->name}}@endauth
+      </span>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJTYa69tOe3W1pMdI6SlkDwnOB0yJGp4UN/6pJ0IBxUU0D8jT" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-pjaaA8dDz/npU8BIyyhBBm/iybbV7pKt5lZhp2mwTrY2Rd93bktz0pP0FU3QfeQ2" crossorigin="anonymous"></script>
+    
 </body>
 </html>
+
 @endif

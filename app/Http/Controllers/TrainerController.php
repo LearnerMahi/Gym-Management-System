@@ -67,7 +67,7 @@ class TrainerController extends Controller
         return view('trainerlogin');
     }
     
-    function logtrainerpost(Request $request)
+     function logtrainerpost(Request $request)
     {
         $request->validate([
             'email' => 'required',
@@ -76,14 +76,39 @@ class TrainerController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        // Attempt authentication using the 'trainer' guard
+      
         if (Auth::guard('trainer')->attempt($credentials)) {
             $trainer = Auth::guard('trainer')->user();
             return redirect()->route('thome')->with("success", "Successfully logged in");
         }
-
+ 
         return redirect()->route('logtrainer')->with("error", "Invalid credentials");
-    }
+    } 
+   /*  public function logtrainerpost(Request $request)
+{
+    // Validate the incoming request
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+
+    $credentials = $request->only('email', 'password');
+
+    // Attempt authentication using the default guard
+    if (Auth::attempt($credentials)) {
+        // Retrieve the authenticated user
+        $user = Auth::trainer();
+
+        // Check if the user is a trainer (assuming you have a way to identify a trainer)
+        // This can be a column in your users table, for example, 'is_trainer'
+        if ($user->gym_membership_id) {
+            return redirect()->route('thome')->with("success", "Successfully logged in");
+        } else {
+            // If the user is not a trainer, log out the user
+            Auth::logout();
+            return redirect()->route('logtrainer')->with("error", "You are not authorized as a trainer");
+        }
+    }} */
     public function update(Request $request, $id)
     {
         try {

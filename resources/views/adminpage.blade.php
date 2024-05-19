@@ -1,23 +1,24 @@
+@extends('layout3')
+@section('title', 'Admin Dashboard')
+
+@section('content')
 <!doctype html>
 <html lang="en">
 <head>
-    <title> Admin Page</title>
+    <title>Admin Dashboard</title>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-       
-        body {
-           /*  background-color: #f8f9fa;
-            font-family: 'Arial', sans-serif; */
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: #fff;
+         body {
+            background: linear-gradient(to right, #f8f9fa, #e0e0e0);
+            color: #333;
             font-family: 'Arial', sans-serif;
         }
         .container {
-            margin-top: 50px;
+            margin-top: 30px;
         }
         .table th, .table td {
             vertical-align: middle;
@@ -36,6 +37,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #000;
         }
         .btn-danger {
             background-color: #dc3545;
@@ -63,23 +65,57 @@
             margin: 0;
         }
         h2 {
-    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Soft warm gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle dark shadow */
-}
-
-
-
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="mb-4 text-center">Admin Page</h2>
+        <h2 class="mb-4">Admin Dashboard</h2>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <div class="alert alert-info">
+                            Total Number of Trainers: <strong>{{ $count }}</strong>
+                        </div>
+                        <div class="alert alert-info">
+                            Total Expenditure: <strong>${{ $count * 50 }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <div class="alert alert-info">
+                            Total Number of Gym Members: <strong>{{ $count1 }}</strong>
+                        </div>
+                        <div class="alert alert-info">
+                            Total Income: <strong>${{ $count1 * 1000 }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <div class="alert alert-info">
+                            Total Profit: <strong>${{ $count1 * 1000 - $count * 50 }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -133,44 +169,8 @@
             </table>
         </div>
     </div>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-text">
-                    <div class="alert alert-info" role="alert">
-                        Total Number of Trainers: <strong>{{ $count }}</strong>
-                    </div>
-                    <div class="alert alert-info" role="alert">
-                        Total Expenditure: <strong>${{ $count * 50 }}</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-text">
-                    <div class="alert alert-info" role="alert">
-                        Total Number of Gym Members: <strong>{{ $count1 }}</strong>
-                    </div>
-                    <div class="alert alert-info" role="alert">
-                        Total Income: <strong>${{ $count1 * 1000 }}</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5 mb-5">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-text">
-                    <div class="alert alert-info" role="alert">
-                        Total Profit: <strong>${{ $count1 * 1000 - $count * 50 }}</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    @include('include.footer')
 </body>
 </html>
+@endsection

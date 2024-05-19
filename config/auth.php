@@ -77,6 +77,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'trainers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Trainer::class,
+        ],
     ],
     'providers' => [
         // Other providers...
